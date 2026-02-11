@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap');
+
+/* Tailwind Directives - Required for PostCSS processing */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-color: #ffffff;
+    --text-main: #111111;
+    --accent: #000000;
+}
+html.lenis, html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+    opacity: 0; /* Init hidden, revealed by JS */
+    visibility: hidden;
+}
+/* Custom Cursor */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+.cursor-outline {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+/* Loader */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.loader-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    z-index: 19999;
+    transform: translateY(100%);
+}
+/* Typography & Utilities */
+.font-mono { font-family: 'Space Mono', monospace; }
+/* Initial states for animations */
+.hero-reveal, .hero-img-container {
+    opacity: 0;
+    visibility: hidden;
+}
+/* Grid Background */
+.grid-bg {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+/* Map Styles */
+.map-svg path {
+    fill: #e5e5e5;
+    stroke: #fff;
+    stroke-width: 1;
+    transition: fill 0.5s;
+}
+.map-svg path:hover {
+    fill: #d4d4d4;
+}
+.map-pin {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+}
+/* Magnetic Button */
+.magnetic-btn {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Image Mask */
+.hero-img-container {
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 0% 100%);
+    transition: clip-path 0.5s;
+}
+.hero-img-container:hover {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+/* Age Box */
+.age-digit {
+    font-variant-numeric: tabular-nums;
+}
+/* Timeline Line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(0,0,0,0.1);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+.timeline-progress {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 0%;
+    background: black;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+/* Horizontal Scroll */
+.work-item {
+    will-change: transform;
+}
+
+/* Custom Tailwind Animations */
+@layer utilities {
+    .animate-spin-slow { animation: spin 20s linear infinite; }
+    .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+}
