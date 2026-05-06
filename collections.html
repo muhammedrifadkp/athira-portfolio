@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en" class="lenis lenis-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections | Athira O K</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Remix Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./src/main.css" />
+    <style>
+      body {
+        opacity: 1 !important;
+        visibility: visible !important;
+        cursor: auto !important;
+      }
+      .collection-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .collection-card {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid var(--color-primary);
+        opacity: 1 !important; /* Ensure visibility */
+        transform: none !important; /* Ensure visibility */
+      }
+      .collection-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .collection-card:hover img {
+        transform: scale(1.1);
+      }
+      .collection-card .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(195, 14, 89, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        color: white;
+      }
+      .collection-card:hover .overlay {
+        opacity: 1;
+      }
+      .text-stroke {
+        -webkit-text-stroke: 1px var(--color-primary);
+        color: transparent;
+      }
+    </style>
+  </head>
+  <body class="bg-accent antialiased selection:bg-[#F96E5B] selection:text-white">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 text-primary bg-accent/90 backdrop-blur-md">
+      <a href="index.html" class="text-xl md:text-2xl font-black tracking-tighter uppercase">ATHIRA.OK</a>
+      <a href="index.html" class="magnetic-btn px-4 md:px-6 py-2 border border-primary rounded-full hover:bg-primary hover:text-white transition-all font-mono text-xs md:text-sm flex items-center gap-2">
+        <i class="ri-arrow-left-line"></i> BACK TO HOME
+      </a>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 md:px-20">
+      <header class="mb-12 md:mb-20">
+        <h1 class="text-5xl md:text-9xl font-black tracking-tighter leading-none mb-6">
+          FULL<br />
+          <span class="text-stroke">COLLECTIONS</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 max-w-xl font-mono">
+          An archive of digital fashion designs, couture concepts, and creative explorations.
+        </p>
+      </header>
+
+      <div class="collection-grid" id="grid">
+        <!-- Project 1 -->
+        <a href="project-detail.html?id=concept-sketch-01" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2332.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 01</span>
+            <h3 class="text-2xl font-bold">Concept Sketch</h3>
+          </div>
+        </a>
+        <!-- Project 2 -->
+        <a href="project-detail.html?id=clo3d-visualization-02" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2337.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 02</span>
+            <h3 class="text-2xl font-bold">CLO3D Visualization</h3>
+          </div>
+        </a>
+        <!-- Project 3 -->
+        <a href="project-detail.html?id=fabric-texture-03" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2338.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 03</span>
+            <h3 class="text-2xl font-bold">Fabric Texture</h3>
+          </div>
+        </a>
+        <!-- Project 4 -->
+        <a href="project-detail.html?id=design-study-04" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2392.JPG.jpeg" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 04</span>
+            <h3 class="text-2xl font-bold">Design Study</h3>
+          </div>
+        </a>
+        <!-- Project 5 -->
+        <a href="project-detail.html?id=digital-illustration-05" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2417.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 05</span>
+            <h3 class="text-2xl font-bold">Digital Illustration</h3>
+          </div>
+        </a>
+        <!-- Project 6 -->
+        <a href="project-detail.html?id=couture-pattern-06" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2427.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 06</span>
+            <h3 class="text-2xl font-bold">Couture Pattern</h3>
+          </div>
+        </a>
+        <!-- Project 7 -->
+        <a href="project-detail.html?id=3d-modeling-07" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2428.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 07</span>
+            <h3 class="text-2xl font-bold">3D Modeling</h3>
+          </div>
+        </a>
+        <!-- Project 8 -->
+        <a href="project-detail.html?id=garment-detail-08" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2430.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 08</span>
+            <h3 class="text-2xl font-bold">Garment Detail</h3>
+          </div>
+        </a>
+        <!-- Project 9 -->
+        <a href="project-detail.html?id=modern-silhouette-09" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2453.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 09</span>
+            <h3 class="text-2xl font-bold">Modern Silhouette</h3>
+          </div>
+        </a>
+        <!-- Project 10 -->
+        <a href="project-detail.html?id=avant-garde-10" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2454.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 10</span>
+            <h3 class="text-2xl font-bold">Avant Garde</h3>
+          </div>
+        </a>
+        <!-- Project 11 -->
+        <a href="project-detail.html?id=teal-vision-11" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2455.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 11</span>
+            <h3 class="text-2xl font-bold">Teal Vision</h3>
+          </div>
+        </a>
+        <!-- Project 12 -->
+        <a href="project-detail.html?id=style-breakdown-12" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2460.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 12</span>
+            <h3 class="text-2xl font-bold">Style Breakdown</h3>
+          </div>
+        </a>
+        <!-- Project 13 -->
+        <a href="project-detail.html?id=fashion-flow-13" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2461.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 13</span>
+            <h3 class="text-2xl font-bold">Fashion Flow</h3>
+          </div>
+        </a>
+        <!-- Project 14 -->
+        <a href="project-detail.html?id=technical-sketch-14" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2463.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 14</span>
+            <h3 class="text-2xl font-bold">Technical Sketch</h3>
+          </div>
+        </a>
+        <!-- Project 15 -->
+        <a href="project-detail.html?id=color-story-15" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2464.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 15</span>
+            <h3 class="text-2xl font-bold">Color Story</h3>
+          </div>
+        </a>
+        <!-- Project 16 -->
+        <a href="project-detail.html?id=runway-ready-16" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2466.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 16</span>
+            <h3 class="text-2xl font-bold">Runway Ready</h3>
+          </div>
+        </a>
+        <!-- Project 17 -->
+        <a href="project-detail.html?id=sustainable-design-17" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2467.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 17</span>
+            <h3 class="text-2xl font-bold">Sustainable Design</h3>
+          </div>
+        </a>
+        <!-- Project 18 -->
+        <a href="project-detail.html?id=final-look-18" class="collection-card" data-gsap="fade-up">
+          <img src="./public/projects/IMG_2468.PNG" alt="Project" />
+          <div class="overlay">
+            <span class="text-xs font-mono mb-2">COLLECTION 18</span>
+            <h3 class="text-2xl font-bold">Final Look</h3>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer class="py-10 text-center text-primary/50 font-mono text-xs border-t border-primary/10">
+      &copy; 2026 ATHIRA O K | ALL RIGHTS RESERVED
+    </footer>
+
+    <script>
+      // Immediate reveal fallback
+      if (typeof gsap !== "undefined") {
+        gsap.set("body", { autoAlpha: 1 });
+      } else {
+        document.body.style.opacity = "1";
+        document.body.style.cursor = "auto";
+      }
+
+      // Initialize Lenis
+      let lenis;
+      try {
+        lenis = new Lenis();
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      } catch (e) {
+        console.error("Lenis failed to initialize", e);
+      }
+
+      // GSAP Animations
+      if (typeof gsap !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+        let mouseX = 0,
+          mouseY = 0;
+        let cursorX = 0,
+          cursorY = 0;
+
+        if (cursorDot && cursorOutline) {
+          window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0 });
+          });
+
+          function animateCursor() {
+            let dt = 0.2;
+            cursorX += (mouseX - cursorX) * dt;
+            cursorY += (mouseY - cursorY) * dt;
+            cursorOutline.style.left = cursorX + "px";
+            cursorOutline.style.top = cursorY + "px";
+            requestAnimationFrame(animateCursor);
+          }
+          animateCursor();
+        }
+
+        // Magnetic Buttons
+        document.querySelectorAll(".magnetic-btn").forEach((btn) => {
+          btn.addEventListener("mousemove", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+            if (cursorOutline) {
+              gsap.to(cursorOutline, { scale: 1.5, opacity: 0.5, duration: 0.3 });
+            }
+          });
+          btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.3 });
+            if (cursorOutline) {
+              gsap.to(cursorOutline, { scale: 1, opacity: 1, duration: 0.3 });
+            }
+          });
+        });
+
+        // Grid Animations
+        gsap.utils.toArray('[data-gsap="fade-up"]').forEach((card, i) => {
+          gsap.from(card, {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: (i % 3) * 0.1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

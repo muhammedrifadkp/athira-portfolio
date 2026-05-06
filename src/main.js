@@ -55,72 +55,34 @@ magneticBtns.forEach(btn => {
     });
 });
 
-// 3. Loader Sequence & Initialization
+// 3. Initialization (Simplified - Loader Removed)
 window.addEventListener("load", () => {
-    // Make body visible (CSS hid it to prevent FOUC)
-    gsap.set("body", { autoAlpha: 1 });
-    // Explicitly set initial states for hero elements to avoid CSS conflicts
-    gsap.set(".hero-reveal", { y: 100, autoAlpha: 0 });
-    gsap.set(".hero-img-container", { scale: 0.9, autoAlpha: 0 });
-    gsap.set("#navbar", { autoAlpha: 0 });
-    const tl = gsap.timeline({
-        onComplete: () => {
-            // Safety: Ensure loader is gone from DOM flow
-            gsap.set("#loader", { display: "none" });
-            gsap.set("#loader-curtain", { display: "none" });
-            // Refresh ScrollTrigger to ensure pinned sections are correct after load
-            ScrollTrigger.refresh();
-        }
-    });
-    // Counter Animation
-    let count = { val: 0 };
-    tl.to(count, {
-        val: 100,
-        duration: 2,
-        ease: "power2.inOut",
-        onUpdate: () => {
-            const el = document.getElementById('loader-percent');
-            if (el) el.innerText = Math.floor(count.val) + "%";
-        }
-    })
-        // Curtain Up
-        .to('#loader', { yPercent: -100, duration: 0.8, ease: "power4.inOut" })
-        .to('#loader-curtain', { yPercent: -100, duration: 0.8, ease: "power4.inOut" }, "-=0.6")
-        // Hero Entry
-        .to('#navbar', { autoAlpha: 1, duration: 0.5 })
-        .to('.hero-reveal', {
-            y: 0,
-            autoAlpha: 1,
-            scale: 1,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power3.out"
-        }, "-=0.5")
-        .to('.hero-img-container', {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.out"
-        }, "-=1.0")
-        // Typewriter start
-        .add(() => {
-            gsap.to('#typewriter', {
-                text: "Couture | Prêt-à-Porter | Styling",
-                duration: 3,
-                ease: "none"
-            });
-        }, "-=0.5");
-});
-// Backup timeout in case window.load fails (e.g., slow image)
-setTimeout(() => {
-    if (document.querySelector('.loader-overlay').style.display !== 'none') {
-        gsap.set("body", { autoAlpha: 1 });
-        gsap.to('#loader', { yPercent: -100, duration: 0.5 });
-        gsap.set(".hero-reveal", { y: 0, autoAlpha: 1 });
-        gsap.set("#navbar", { autoAlpha: 1 });
-    }
-}, 5000);
+    // Refresh ScrollTrigger to ensure pinned sections are correct
+    ScrollTrigger.refresh();
 
+    // Subtle Hero Entrance (Optional, but keeps it professional)
+    gsap.from('.hero-reveal', {
+        y: 30,
+        autoAlpha: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out"
+    });
+    gsap.from('.hero-img-container', {
+        autoAlpha: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "power3.out"
+    });
+
+    // Typewriter start
+    gsap.to('#typewriter', {
+        text: "CLO3D Design | Digital Fashion | Styling",
+        duration: 3,
+        delay: 0.5,
+        ease: "none"
+    });
+});
 // 4. Parallax Elements
 gsap.utils.toArray('.parallax-element').forEach(el => {
     const speed = el.getAttribute('data-speed');
@@ -152,8 +114,7 @@ const mapTl = gsap.timeline({
         toggleActions: "play reverse play reverse"
     }
 });
-mapTl.from("#map-container", { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.7)" })
-    .to("#map-pin", { y: 0, opacity: 1, duration: 0.5, ease: "bounce.out" }, "-=0.3");
+mapTl.from("#map-container", { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.7)" });
 
 // 7. General Reveal Animations (Bi-directional)
 gsap.utils.toArray('[data-gsap="fade"]').forEach(el => {
@@ -181,8 +142,8 @@ gsap.utils.toArray('[data-gsap="slide-up"]').forEach(el => {
 
 // 8. Age & Stats Calculator
 function updateTimeBasedStats() {
-    const birthDate = new Date('1998-06-10T11:10:00');
-    const careerStartDate = new Date('2018-06-10T00:00:00'); // Professional start
+    const birthDate = new Date('2024-01-10T11:10:00');
+    const careerStartDate = new Date('2024-01-10T00:00:00'); // Journey start
     const now = new Date();
     // --- AGE CALCULATION ---
     let years = now.getFullYear() - birthDate.getFullYear();
@@ -291,3 +252,40 @@ gsap.utils.toArray('[data-gsap="service-item"]').forEach((item, i) => {
         delay: i * 0.1
     });
 });
+
+// 11. WhatsApp Contact Form Handler
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Collect form data
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const service = document.getElementById('service').value || 'Not specified';
+        const message = document.getElementById('message').value.trim();
+        
+        // Format the WhatsApp message
+        const whatsappMessage = `*New Inquiry from Portfolio*
+---------------------------
+*Name:* ${name}
+*Email:* ${email}
+*Service:* ${service}
+
+*Message:*
+${message}`;
+        
+        // Target WhatsApp number
+        const phoneNumber = "916282658938";
+        
+        // Create the WhatsApp URL
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        // Open WhatsApp in a new tab
+        window.open(whatsappUrl, '_blank');
+        
+        // Reset form after submission
+        contactForm.reset();
+    });
+}
