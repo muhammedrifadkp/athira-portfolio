@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite';
-import { viteSingleFile } from 'vite-plugin-singlefile';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import javascriptObfuscator from 'vite-plugin-javascript-obfuscator';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [
@@ -28,27 +32,20 @@ export default defineConfig({
       transformObjectKeys: true,
       unicodeEscapeSequence: false,
     }),
-    viteSingleFile({
-      // Bundle into single HTML file
-      removeConsole: false, // Keep console for debugging if needed
-      removeDebugger: true,
-      maxSizeInKb: 2048, // Adjust if bundle is too large
-    }),
   ],
   build: {
     minify: 'esbuild',
     cssMinify: true,
-    cssCodeSplit: false, // For single file
     rollupOptions: {
-      output: {
-        inlineDynamicImports: true,
-        renderChunk: (code, chunk, options) => {
-          // Ensure JS is processed for obfuscation
-          return code;
-        },
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        collections: resolve(__dirname, 'collections.html'),
+        projectDetail: resolve(__dirname, 'project-detail.html'),
       },
     },
     target: 'esnext',
     sourcemap: false, // Disable sourcemaps for obfuscation
   },
 });
+
+
