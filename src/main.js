@@ -18,6 +18,18 @@ gsap.ticker.lagSmoothing(0);
 // Sync GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.classList.add('bg-accent/95', 'shadow-md', 'border-b', 'border-primary/5');
+        nav.classList.remove('md:bg-transparent', 'md:backdrop-blur-none');
+    } else {
+        nav.classList.remove('bg-accent/95', 'shadow-md', 'border-b', 'border-primary/5');
+        nav.classList.add('md:bg-transparent', 'md:backdrop-blur-none');
+    }
+});
+
 // 2. Custom Cursor Logic (Magnetic)
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
